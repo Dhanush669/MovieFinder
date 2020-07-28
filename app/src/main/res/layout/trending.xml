@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="330dp"
+        android:layout_height="480dp"
+        android:layout_gravity="center"
+        app:cardBackgroundColor="#000000"
+        app:cardCornerRadius="15dp"
+        android:padding="80dp"
+        >
+
+        <ImageView
+            android:id="@+id/movieposter"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@mipmap/ic_launcher"
+            >
+        </ImageView>
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>
