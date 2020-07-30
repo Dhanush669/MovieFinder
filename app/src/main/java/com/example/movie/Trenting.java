@@ -3,20 +3,50 @@ package com.example.movie;
 public class Trenting {
     private String poster;
     private String title;
-    private String id;
+    private long id;
     private String releasedate;
     private String overview;
     private Boolean adult;
+    private String age;
+    private double rate;
+    private String lang;
     public Trenting() {
     }
 
-    public Trenting(String poster, String title, String id, String releasedate, String overview, Boolean adult) {
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    public double getRate() {
+        return rate;
+    }
+
+    public void setRate(double rate) {
+        this.rate = rate;
+    }
+
+    public String getLang() {
+        return lang;
+    }
+
+    public void setLang(String lang) {
+        this.lang = lang;
+    }
+
+    public Trenting(String poster, String title, long id, String releasedate, String overview, Boolean adult, String age, double rate, String lang) {
         this.poster = poster;
         this.title = title;
         this.id = id;
         this.releasedate = releasedate;
         this.overview = overview;
         this.adult = adult;
+        this.age=age;
+        this.rate=rate;
+        this.lang=lang;
     }
 
     public String getPoster() {
@@ -35,11 +65,11 @@ public class Trenting {
         this.title = title;
     }
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 

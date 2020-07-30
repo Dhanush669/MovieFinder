@@ -1,6 +1,9 @@
 package com.example.movie;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,14 +39,31 @@ public class TrendingAdapter extends RecyclerView.Adapter<TrendingAdapter.Trendi
         return new Trendingview(view);
     }
     @Override
-    public void onBindViewHolder(@NonNull TrendingAdapter.Trendingview holder, int position) {
+    public void onBindViewHolder(@NonNull final TrendingAdapter.Trendingview holder, final int position) {
         try {
             //holder.mtitle.setText(trentingList.get(position).getTitle());
-            String url="https://image.tmdb.org/t/p/w500"+trentingList.get(position).getPoster();
-            Glide.with(context).load(url).into(holder.poster);
+            //String url="https://image.tmdb.org/t/p/w500"+trentingList.get(position).getPoster();
+            Glide.with(context).load(trentingList.get(position).getPoster()).into(holder.poster);
             //holder.poster.setImageResource(R.drawable.ic_launcher_background);
+            holder.cardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //ImageView iv=v.findViewById();
+                    Intent intent=new Intent(context,Detailed.class);
+                    intent.putExtra("title",trentingList.get(position).getTitle());
+                    intent.putExtra("release",trentingList.get(position).getReleasedate());
+                    intent.putExtra("overview",trentingList.get(position).getOverview());
+                    intent.putExtra("id",trentingList.get(position).getId());
+                    intent.putExtra("poster",trentingList.get(position).getPoster());
+                    intent.putExtra("rate",trentingList.get(position).getRate());
+                    intent.putExtra("lang",trentingList.get(position).getLang());
+                    intent.putExtra("age",trentingList.get(position).getAge());
+                    context.startActivity(intent);
+                    //holder.poster.setImageBitmap(trentingList.get(position).getPoster());
+                }
+            });
         }catch (Exception e){
-            Toast.makeText(context, "error", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context, "error", Toast.LENGTH_SHORT).show();
         }
     }
     @Override
@@ -59,6 +79,7 @@ public class TrendingAdapter extends RecyclerView.Adapter<TrendingAdapter.Trendi
         public Trendingview(@NonNull View itemView) {
             super(itemView);
             poster=itemView.findViewById(R.id.movieposter);
+            cardView=itemView.findViewById(R.id.detailview);
             //mtitle=itemView.findViewById(R.id.movietitle);
         }
     }

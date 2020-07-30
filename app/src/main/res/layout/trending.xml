@@ -8,10 +8,12 @@
     <androidx.cardview.widget.CardView
         android:layout_width="330dp"
         android:layout_height="480dp"
+        android:id="@+id/detailview"
         android:layout_gravity="center"
         app:cardBackgroundColor="#000000"
         app:cardCornerRadius="15dp"
         android:padding="80dp"
+        android:onClick="detailview"
         >
 
         <ImageView
