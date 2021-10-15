@@ -1,4 +1,4 @@
-package com.example.movie;
+package com.example.movie.model;
 
 public class Trenting {
     private String poster;

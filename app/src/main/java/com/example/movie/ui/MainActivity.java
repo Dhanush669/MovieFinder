@@ -1,24 +1,19 @@
-package com.example.movie;
+package com.example.movie.ui;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
-import android.app.DownloadManager;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Adapter;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -30,6 +25,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.movie.adapter.MovieAdapter;
+import com.example.movie.R;
+import com.example.movie.adapter.TrendingAdapter;
+import com.example.movie.model.Trenting;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -253,7 +252,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(MainActivity.this, textView.getText().toString(), Toast.LENGTH_SHORT).show();
-                Intent intent=new Intent(getApplicationContext(),FullView.class);
+                Intent intent=new Intent(getApplicationContext(), FullView.class);
                 switch (textView.getText().toString()){
                     case "Trending":
                         intent.putExtra("url","https://api.themoviedb.org/3/trending/movie/day?api_key=81152650175a579f1997f9f742ed686b");
