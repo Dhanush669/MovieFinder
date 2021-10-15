@@ -11,10 +11,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".FullView"></activity>
-        <activity android:name=".Detailed" />
-        <activity android:name=".Search" />
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".ui.FullView"
+            android:exported="true" />
+        <activity
+            android:name=".ui.Detailed"
+            android:exported="true" />
+        <activity
+            android:name=".ui.Search"
+            android:exported="true" />
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

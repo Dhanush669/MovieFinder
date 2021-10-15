@@ -1,4 +1,4 @@
-package com.example.movie;
+package com.example.movie.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,37 +10,44 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.bumptech.glide.Glide;
+import com.example.movie.R;
+import com.example.movie.model.Trenting;
+import com.example.movie.ui.Detailed;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder>{
-    private List<Trenting> trentingList=new ArrayList<>();
-    private Context context;
-
-    public MovieAdapter(List<Trenting> trentingList, Context context) {
+public class TrendingAdapter extends RecyclerView.Adapter<TrendingAdapter.Trendingview>{
+    private List<Trenting> trentingList =new ArrayList<>();
+    Context context;
+    ViewPager2 viewPager2;
+    public TrendingAdapter(List<Trenting> trentingList, Context context,ViewPager2 viewPager2) {
         this.trentingList = trentingList;
         this.context = context;
+        this.viewPager2=viewPager2;
     }
-
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.movierecycler,parent,false);
-        return new MyViewHolder(view);
+    public Trendingview onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view;
+        view= LayoutInflater.from(parent.getContext()).inflate(R.layout.trending,parent,false);
+        return new Trendingview(view);
     }
-
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final TrendingAdapter.Trendingview holder, final int position) {
         try {
-            Glide.with(context).load(trentingList.get(position).getPoster()).into(holder.imageView);
+            //holder.mtitle.setText(trentingList.get(position).getTitle());
+            //String url="https://image.tmdb.org/t/p/w500"+trentingList.get(position).getPoster();
+            Glide.with(context).load(trentingList.get(position).getPoster()).into(holder.poster);
+            //holder.poster.setImageResource(R.drawable.ic_launcher_background);
             holder.cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     //ImageView iv=v.findViewById();
-                    Intent intent=new Intent(context,Detailed.class);
+                    Intent intent=new Intent(context, Detailed.class);
                     intent.putExtra("title",trentingList.get(position).getTitle());
                     intent.putExtra("release",trentingList.get(position).getReleasedate());
                     intent.putExtra("overview",trentingList.get(position).getOverview());
@@ -54,23 +61,25 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
                 }
             });
         }catch (Exception e){
-            e.printStackTrace();
+            //Toast.makeText(context, "error", Toast.LENGTH_SHORT).show();
         }
     }
-
     @Override
     public int getItemCount() {
-        return 20;
         //return trentingList.size();
+        return 20;
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder{
-        ImageView imageView;
+    public static class Trendingview extends RecyclerView.ViewHolder{
+        ImageView poster;
+        //TextView mtitle;
         CardView cardView;
-        public MyViewHolder(@NonNull View itemView) {
+        public Trendingview(@NonNull View itemView) {
             super(itemView);
-            imageView=itemView.findViewById(R.id.imageview);
-            cardView=itemView.findViewById(R.id.cardview);
+            poster=itemView.findViewById(R.id.movieposter);
+            cardView=itemView.findViewById(R.id.detailview);
+            //mtitle=itemView.findViewById(R.id.movietitle);
         }
     }
+
 }
