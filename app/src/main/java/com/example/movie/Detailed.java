@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -125,5 +126,17 @@ public class Detailed extends AppCompatActivity {
         recyclerView.setAdapter(movieAdapter);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(Detailed.this,LinearLayoutManager.HORIZONTAL,false);
         recyclerView.setLayoutManager(linearLayoutManager);
+    }
+
+    public void share(View view){
+        Intent share=new Intent(Intent.ACTION_SEND);
+        String message;
+        message="Movie Title :\n"+title.getText().toString()+"\n"+"Released date :\n"+releasedate.getText().toString()
+                +"\n"+"Review :\n"+rate.getText().toString()+"\n"+"Language :\n"+lang.getText().toString()+"\n"+"Overview: "+overview.getText().toString();
+
+        ;
+        share.putExtra(Intent.EXTRA_TEXT,message);
+        share.setType("text/plain");
+        startActivity(share);
     }
 }
